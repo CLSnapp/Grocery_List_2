@@ -47,6 +47,7 @@ function getItemPriceByName(items, name) {
       return items[i].price;
     }
   }
+  return undefined;
 }
 
 /**
@@ -62,14 +63,10 @@ function getItemsByCategory(items, category) {
  * @param {Item[]} items - array of items
  * @returns {number} the total quantity of all items
  */
-function countItems(items, quantity) {
-  return items.reduce((count, item) => {
-    if (item.quantity === quantity) {
-      return count + 1;
-    } else {
-      return count;
-    }
-  }, 0);
+
+function countItems(items) {
+  //Adding a 0 to the end of the method starts the value at 0
+  return items.reduce((total, item) => total + item.quantity, 0);
 }
 
 /**
@@ -77,9 +74,8 @@ function countItems(items, quantity) {
  * @returns {number} the cost of all given items
  */
 function calculateTotalPrice(items) {
-  return items.reduce((total, item) => {
-    return total + item.price;
-  }, 0);
+  //Adding a 0 to the end of the method, the function will return 0 instead of undefined
+  return items.reduce((total, item) => total + item.price * item.quantity, 0);
 }
 
 // --------------------- DO NOT CHANGE THE CODE BELOW ------------------------ //
